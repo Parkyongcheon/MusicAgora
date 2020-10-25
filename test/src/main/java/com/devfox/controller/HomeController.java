@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,8 +60,15 @@ public class HomeController {
 	 */
 	
 	@GetMapping("/main")
-	public String main()
+	public String main(HttpServletRequest request)
 	{
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("userid");
+		
+		session.setAttribute("userid", id);
+		
+		
 		return "main";
 	}
 }

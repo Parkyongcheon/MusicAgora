@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,21 @@
 		<div class="left_area">
 			<h3>Msuic <span>Agora</span></h3>
 		</div>
-		<div class="right_area">
-			<a href="#" class="logout_btn">Logout</a>
-		</div>
+		<c:choose>
+		<c:when test="${userid != null}" >
+			<div class="right_area">
+				<a href="/logout" class="logout_btn">Logout</a>
+			</div>
+		</c:when>
+		<c:when test="${userid == null}">
+			<div class="right_area">
+				<a href="/login" class="login_btn">Login</a>
+			</div>
+		</c:when>
+		</c:choose>
+		
+		
+		
 	</header>
 	
 	<!-- mobile navigation bar start-->
@@ -63,6 +76,7 @@
 		<div class="google"><a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/analytics.readonly&access_type=offline&include_granted_scopes=true&redirect_uri=http://localhost:8080/test/main/google&response_type=code&client_id=1076621433838-pgcvvagrsnr3n99l1h6chi292d1abe58.apps.googleusercontent.com">GoogleLogin</a></div>
 		<div class="door"><a href="door">door</a></div>
 		<div class="login"><a href="login">login</a></div>
+		<div><h1>${userid }</h1></div>
 	</div>
 
 	<script type="text/javascript">
