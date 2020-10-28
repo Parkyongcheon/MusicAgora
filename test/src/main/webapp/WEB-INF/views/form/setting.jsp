@@ -84,7 +84,6 @@
 				{
 					console.log(data);
 					$('#noci').append(data + " <br>")
-					
 				}
 				,error	: function(error)
 				{
@@ -93,6 +92,8 @@
 			})
 
 		})
+
+
 		
 	})
 
@@ -187,15 +188,19 @@
 	<div>
 		<input type="button" id="selfollower" value="seachingfollower">
 	</div>
+	
 	<div id="noci">
 		
 	</div>
 	
-
-</div>
-
+	<div>
+		<form action="upload" method="post" enctype="multipart/form-data">
+			<input type="file" name="file"> <input type="submit" value="제출">
+		</form>
+	</div>
 	
 
+</div>
 
 	<script type="text/javascript">
 	

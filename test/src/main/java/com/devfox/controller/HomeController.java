@@ -71,4 +71,10 @@ public class HomeController {
 		
 		return "main";
 	}
+	
+	@GetMapping("messagepopup")
+	public String messageopen()
+	{
+		return "/form/messagepopup";
+	}
 }

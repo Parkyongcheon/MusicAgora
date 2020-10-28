@@ -11,6 +11,24 @@
 <link rel="stylesheet" type="text/css" href="resources/style2.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(function(){
+
+	$("#messagebtn").click(function(){
+		popupopen();
+	})
+
+	
+})
+
+function popupopen()
+{
+	window.open('/messagepopup','_blank','width=500, height=600');
+}
+
+</script>
+
+
 </head>
 <body>
 	<input type="checkbox" id="check" checked>
@@ -77,6 +95,11 @@
 		<div class="door"><a href="door">door</a></div>
 		<div class="login"><a href="login">login</a></div>
 		<div><h1>${userid }</h1></div>
+		<c:if test="${userid != null}">
+		<div class="sendmessage">
+			<input type="button" value="메세지를 보내보세요" id="messagebtn">
+		</div>
+		</c:if>
 	</div>
 
 	<script type="text/javascript">

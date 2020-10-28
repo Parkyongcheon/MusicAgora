@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.devfox.dao.FollowDAO;
+import com.devfox.dao.MessageDAO;
 import com.devfox.dao.UserDAO;
 import com.devfox.dto.FollowVO;
 import com.devfox.dto.UserVO;
@@ -30,6 +31,9 @@ public class MainController {
 	
 	@Inject
 	private UserDAO userdao;
+	
+	@Inject
+	private MessageDAO messagedao;
 	
 	
 	@GetMapping("/team")
@@ -92,7 +96,6 @@ public class MainController {
 		catch(Exception e)
 		{
 			System.out.println(e);
-			//System.out.println(num);
 			return num;
 		}
 	}
@@ -176,7 +179,6 @@ public class MainController {
 		List<String> list = null;
 		try 
 		{
-			
 			list = followdao.selfollower(follow);
 			list.get(1);
 			System.out.println("sellfollower Contorlloer In");
@@ -186,6 +188,24 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/idcheck", method = RequestMethod.GET)
+	public int idcheck(String id)
+	{
+		int num = 0;
+		System.out.println("idcheck 실행");
+		try 
+		{
+			num = messagedao.checkid(id);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return num;
 	}
 	
 }

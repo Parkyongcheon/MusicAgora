@@ -18,7 +18,6 @@ public class RecomDAOImpl implements RecomDAO{
 	@Override
 	public RecomVO selectRecom(String id)
 	{
-		
 		return (RecomVO)sqlSession.selectOne(SelectRecom, id);
 	}
 }
