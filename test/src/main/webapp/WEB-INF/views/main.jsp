@@ -94,7 +94,7 @@ function popupopen()
 		<div class="google"><a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/analytics.readonly&access_type=offline&include_granted_scopes=true&redirect_uri=http://localhost:8080/test/main/google&response_type=code&client_id=1076621433838-pgcvvagrsnr3n99l1h6chi292d1abe58.apps.googleusercontent.com">GoogleLogin</a></div>
 		<div class="door"><a href="door">door</a></div>
 		<div class="login"><a href="login">login</a></div>
-		<div><h1>${userid }</h1></div>
+		<div><h1>${userid}</h1></div>
 		<c:if test="${userid != null}">
 		<div class="sendmessage">
 			<input type="button" value="메세지를 보내보세요" id="messagebtn">

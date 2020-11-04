@@ -21,6 +21,7 @@ import com.devfox.dao.FollowDAO;
 import com.devfox.dao.MessageDAO;
 import com.devfox.dao.UserDAO;
 import com.devfox.dto.FollowVO;
+import com.devfox.dto.MessageVO;
 import com.devfox.dto.UserVO;
 
 @Controller
@@ -73,11 +74,14 @@ public class MainController {
 	}
 	
 	@GetMapping("/setting")
-	public String setting(Model model) throws Exception
+	public String setting(Model model, HttpSession session, HttpServletRequest request) throws Exception
 	{
 		int num = followdao.selfollow("first");
-		
 		model.addAttribute("follownum", num);
+		session = request.getSession();
+		String id = (String) session.getAttribute("userid");
+		
+		session.setAttribute("userid", id);
 		
 		return "form/setting";
 	}
@@ -189,7 +193,7 @@ public class MainController {
 		}
 		return list;
 	}
-	
+	//message 보낼 때 아이디 체크
 	@ResponseBody
 	@RequestMapping(value="/idcheck", method = RequestMethod.GET)
 	public int idcheck(String id)
@@ -198,6 +202,7 @@ public class MainController {
 		System.out.println("idcheck 실행");
 		try 
 		{
+			System.out.println(id);
 			num = messagedao.checkid(id);
 		}
 		catch(Exception e)
@@ -207,5 +212,24 @@ public class MainController {
 		
 		return num;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/inmessage", method = RequestMethod.POST)
+	public int inmessage(MessageVO vo)
+	{
+		int num = 0;
+		System.out.println("inmessage 실행");
+		try 
+		{
+			num = messagedao.inmessage(vo);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return num;
+	}
+	
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.devfox.dao.FollowDAO;
 import com.devfox.dao.RecomDAO;
 import com.devfox.dto.RecomVO;
+import java.util.UUID;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,7 +37,8 @@ public class RecommnedDAOTest {
 	{
 		int num = dao2.selfollow("first");
 		System.out.println(num);
-		
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid);
 	}
 	
 	

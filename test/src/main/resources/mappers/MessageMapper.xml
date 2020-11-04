@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="checkid" resultType="Integer" parameterType="com.devfox.dto.MessageVO">
-		select Count(*) from message where (select id from user where id = #{id}) = #{id};
+		select count(id) from user where id = #{id};
 	</select>
 
 

@@ -73,8 +73,12 @@ public class HomeController {
 	}
 	
 	@GetMapping("messagepopup")
-	public String messageopen()
+	public String messageopen(HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("userid");
+		
+		session.setAttribute("userid", id);
 		return "/form/messagepopup";
 	}
 }

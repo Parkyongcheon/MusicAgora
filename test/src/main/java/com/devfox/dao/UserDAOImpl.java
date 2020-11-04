@@ -32,9 +32,50 @@ public class UserDAOImpl implements UserDAO{
 	public int loginuser(UserVO vo)
 	{
 		int num = 0;
-		num = sqlSession.selectOne("UserMapper.loginuser",vo);
 		
-		return num;
+		try 
+		{
+			num = sqlSession.selectOne("UserMapper.loginuser",vo);
+			return num;
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return num;
+		}
 		
+	}
+	
+	
+	public int uploadfile(UserVO vo)
+	{
+		int num = 0;
+		
+		try 
+		{
+			num = sqlSession.update("UserMapper.uploadfile", vo);
+			return num;
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return num;
+		}
+	}
+	
+	
+	public String sfilecheck(String id)
+	{
+		String sfile = null;
+		try 
+		{
+			sfile = sqlSession.selectOne("UserMapper.sfilecheck", id);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return sfile;
 	}
 }

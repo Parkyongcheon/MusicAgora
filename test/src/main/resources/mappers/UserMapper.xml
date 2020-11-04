@@ -12,5 +12,13 @@
 	<select id="loginuser" resultType="Integer" parameterType="com.devfox.dto.UserVO"> 
 		Select COUNT(*) FROM USER WHERE id=#{id} AND pw=#{pw};
 	</select>
+	
+	<update id="uploadfile" parameterType="com.devfox.dto.UserVO">
+		UPDATE USER SET OFILE = #{ofile}, SFILE = #{sfile} where id = #{id};
+	</update>
+	
+	<select id="sfilecheck" resultType="string" parameterType="string"> 
+		select ofile from user where id = #{id};
+	</select>
 
 </mapper>

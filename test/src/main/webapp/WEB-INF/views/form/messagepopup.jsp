@@ -21,6 +21,7 @@ $(function(){
 				if(data == 1)
 				{
 					alert('You are ready to send your message');
+					$('#content').attr('disabled',false);
 				}
 				else
 				{
@@ -34,8 +35,38 @@ $(function(){
 			}
 			
 		})
-		
 	})
+
+	$('#subbtn').click(function(){
+		var sender = '<%=session.getAttribute("userid") %>'
+		var receiver = $('#id').val();
+		var message = $('#content').val();
+
+		$.ajax
+		({
+			type	: 'POST'
+			,data	: {'sender' : sender, 'receiver' : receiver, 'message' : message}
+			,url	: '/inmessage'
+			,success: function(data)
+			{
+				if(data == 1)
+				{
+					alert('성공');
+					window.close();
+				}
+				else
+				{
+					alert('실패');
+				}
+			}
+			,error	: function(error)
+			{
+				console.log(error);
+			}
+		})
+	})
+
+	
 })
 
 </script>
@@ -43,8 +74,10 @@ $(function(){
 <body>
 	<form action="send" method="post" >
 		<input type="text" id="id" placeholder="id seach"><input id="idcheck" type="button" value="check"><br>
-		<textarea rows="8" cols="22" placeholder="content" id="content"></textarea><br>
+		<textarea rows="8" cols="22" placeholder="content" id="content" disabled="disabled"></textarea><br>
 		<input type="button" value="보내기" id="subbtn">
 	</form>
+	
+	<span>${userid }</span>
 </body>
 </html>
