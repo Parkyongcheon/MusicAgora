@@ -231,5 +231,15 @@ public class MainController {
 		return num;
 	}
 	
+	@GetMapping("/test1")
+	public String test1() throws Exception
+	{
+		return "form/test1";
+	}
 	
+	@GetMapping("/test2")
+	public String test2() throws Exception
+	{
+		return "form/test2";
+	}
 }
